@@ -1,10 +1,10 @@
 import React, { Component } from 'react'
-import util from '../util';
+import util from '../util'
 
-export class Products extends Component {
+class Products extends Component {
   render() {
     const productItems = this.props.products.map(product => (
-      <div className="col-md-4">
+      <div className="col-md-4" key={product.id}>
           <div className="thumbnail text-center">
             <a href={`#${product.id}`} onClick={(e) => this.props.handleAddToCard(e, product)}>
               <img src={`/products/${product.sku}_2.jpg`} alt="product.title"/>
@@ -13,7 +13,7 @@ export class Products extends Component {
               </p>
             </a>
             <div>
-              <b>{product.price}</b>
+              <b>{util.formatCurrency(product.price)}</b>
               <button className="btn btn-primary"
                 onClick={(e) => this.props.handleAddToCard(e, product)}>Add to Cart</button>
             </div>
